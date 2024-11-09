@@ -1,0 +1,74 @@
+     <div class="container mx-auto p-4">
+      <h2 class="text-2xl font-bold mb-6">Lista de Livros</h2>
+
+      <div class="overflow-x-auto shadow-md rounded-lg mb-6">
+        <table class="min-w-full bg-white">
+          <thead class="bg-gray-100">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">ID</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Título</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Autor</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Ano</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Gênero</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Editora</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">ISBN</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Status</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Ações</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <tr *ngFor="let livro of livros" class="hover:bg-gray-50">
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ livro.id }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ livro.titulo }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ livro.autor }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ livro.ano }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ livro.genero }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ livro.editora }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ livro.isbn }}</td>
+
+              <td class="px-6 py-4 whitespace-nowrap text-sm">
+                <span 
+                  [ngClass]="{
+                    'bg-green-100 text-green-800': !livro.reservado,
+                    'bg-red-100 text-red-800': livro.reservado
+                  }"
+                  class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
+                  {{ livro.reservado ? 'Reservado' : 'Disponível' }}
+                </span>
+              </td>
+
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                <button 
+                  (click)="reservarLivro(livro)"
+                  class="px-3 py-1 rounded-md"
+                  [ngClass]="{
+                    'text-green-600 hover:text-green-900 bg-green-100 hover:bg-green-200': !livro.reservado,
+                    'text-yellow-600 hover:text-yellow-900 bg-yellow-100 hover:bg-yellow-200': livro.reservado
+                  }">
+                  {{ livro.reservado ? 'Cancelar Reserva' : 'Reservar' }}
+                </button>
+                <button 
+                  (click)="deletarLivro(livro.id)"
+                  class="text-red-600 hover:text-red-900 bg-red-100 hover:bg-red-200 px-3 py-1 rounded-md">
+                  Deletar
+                </button>
+                <button 
+                  [routerLink]="['/livro/edit', livro.id]"
+                  class="text-blue-600 hover:text-blue-900 bg-blue-100 hover:bg-blue-200 px-3 py-1 rounded-md">
+                  Editar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <button 
+        [routerLink]="['/livro/new']"
+        class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg inline-flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+        </svg>
+        Adicionar Novo Livro
+      </button>
+     </div>
