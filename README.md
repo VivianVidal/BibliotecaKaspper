@@ -1,6 +1,12 @@
-# MyAngularProject
+# Biblioteca Kaspper
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.1.
+Este é um sistema de reservas de livros para locação desenvolvido com [Angular CLI](https://github.com/angular/angular-cli) versão 17.1.1.
+O sistema permite gerenciar um catálogo de livros, exibindo suas características e permitindo verificar se estão disponíveis para locação.
+
+#Funcionalidades
+
+- Disponibilidade de locação: Exibe se um livro está disponível ou já foi locado.
+- Detalhes do livro: Informações sobre as características dos livros, como título, autor, ano de publicação, entre outros.
 
 ## Development server
 
